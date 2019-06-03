@@ -30,7 +30,7 @@ class Evaluator:
                 self.regexs[re.compile(reg)] = fun
         self.logger.info("RE list created for evaluator: {}".format(self.regexs))
 
-    def eval(self,cmd):
+    def evaluate(self,cmd):
         for r in self.regexs.keys():
             logging.debug(r)
             m = re.match(r,cmd)
