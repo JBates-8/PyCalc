@@ -1,0 +1,11 @@
+vars
+set x = 1
+set y = 2
+set z = 3
+vars
+def f = x
+def h = x^2
+vars
+f(1)
+h(4)
+quit
