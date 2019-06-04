@@ -21,7 +21,7 @@ class Console():
 
     def process(self):
         self.cur_cmd = self.cur_cmd.strip()
-        self.evaluator.eval(self.cur_cmd)
+        self.evaluator.evaluate(self.cur_cmd)
         self.cmds_proc += 1
         self.logger.debug("input: {}".format(self.cur_cmd))
 

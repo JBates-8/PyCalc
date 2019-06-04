@@ -1,6 +1,6 @@
 quit
 quit()
-set [a-zA-Z] = ((0)|([1-9][0-9]*))$
+set [a-zA-Z] = ((0)|(-{0,1}[1-9][0-9]*))$
 assign()
 vars
 show_vars()
@@ -10,5 +10,5 @@ count
 count_cmds()
 def [a-zA-Z] = [0-9a-zA-Z\+\-\/\^\* ]+$
 define_func()
-[a-zA-Z]\(((0)|([1-9][0-9]*))\)
+[a-zA-Z]\(((0)|(-{0,1}[1-9][0-9]*))\)
 evaluate_at()

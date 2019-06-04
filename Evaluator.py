@@ -74,7 +74,7 @@ class Evaluator:
         with open(self.file_to_run,'r') as f:
             for line in f.readlines():
                 if not self.stop_run:
-                    self.eval(line)
+                    self.evaluate(line)
 
     def define_func(self):
         split = self.cmd.split("=")
