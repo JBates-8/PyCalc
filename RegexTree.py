@@ -28,10 +28,15 @@ def print_tree(tree, depth = 0):
 
 
 if __name__ == '__main__':
+    from random import randint
     root = RegexTree("Root")
     print_tree(root)
-    for i in range(4):
-        root.add_child("Root_{}".format(i))
+    for i in range(randint(4,30)):
+        root.add_child("Child_{}".format(i))
+
+    for child in root.children:
+        for i in range(randint(5,20)):
+            child.add_child("Grandchild_{}{}".format(child.name[-1],i))
 
     print_tree(root)
 
