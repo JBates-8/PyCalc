@@ -8,4 +8,5 @@ def h = x^2
 vars
 f(1)
 h(4)
+lag f: [0,1,2,3],[0,1,4,9]
 quit

@@ -8,6 +8,7 @@ import logging
 import re
 
 from Function import Function
+from Lagrange import Lagrange
 import numbers
 
 
@@ -94,6 +95,23 @@ class Evaluator:
         if func_to_eval in self.variables:
             self.logger.info("".format(self.variables[func_to_eval].evaluate_at(value)))
         self.logger.info(str())
+
+    def lagrange(self):
+        self.logger.info("lagrange called...")
+        cmd = self.cmd.strip().split()
+        self.logger.info("cmd: {}".format(cmd))
+        l_name = cmd[1].strip()[0]
+
+        data = cmd[2].split("],[")
+        data[0] = data[0][1:]
+        data[1] = data[1][:-1]
+        data[0] = [int(x) for x in data[0].split(",")]
+        data[1] = [int(x) for x in data[1].split(",")]
+        self.logger.debug(data)
+        lag = Lagrange(data[0],data[1],l_name)
+        self.variables[l_name] = lag
+
+
 
 
 
