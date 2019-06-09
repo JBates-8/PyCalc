@@ -1,18 +1,20 @@
 """
 File: FSM.py
 Author: Jackson Bates
-Created: 6/7/2019 7:55 PM 
+Created: 6/7/2019 7:55 PM
 """
 
+import logging
 
 class FSM:
 
     def __init__(self, setup_file):
+        logging.info("Setup file passed to FSM: {}".format(setup_file))
         self.setup(setup_file)
 
 
     def setup(self, fn):
-
+        logging.info("Setup called for FSM...")
         with open(fn) as f:
             lines = [l.strip() for l in f.readlines()]
             N_States = int(lines[0])
@@ -26,10 +28,12 @@ class FSM:
                 self.states[s1].transitions[chars] = [s2,action]
 
     def generate_states(self, n, acc):
+        logging.info("Generating states and setting accept states...")
         self.states = []
         for i in range(n):
             if i in acc:
                 s = State(True)
+                logging.info("Accept state set: {}".format(s))
             else:
                 s = State(False)
             self.states.append(s)

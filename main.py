@@ -40,9 +40,10 @@ if __name__ == '__main__':
     elif mode == 'TEST': #Debug mode in CLI
         output_stream.setLevel(logging.DEBUG)
         logger.info("Mode selected ({})".format(mode))
-
-        from Console import Console
-        console = Console()
-        console.test_run()
+        from FSM import FSM
+        fsm = FSM("fsm_setup.txt")
+        #from Console import Console
+        #console = Console()
+        #console.test_run()
     else:
         logger.error("Incorrect main parameter: {}".format(mode))
