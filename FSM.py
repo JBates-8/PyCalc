@@ -9,12 +9,12 @@ import logging
 class FSM:
 
     def __init__(self, setup_file):
-        logging.info("Setup file passed to FSM: {}".format(setup_file))
+        self.logger = logging.getLogger(__name__)
+        self.logger.info("Setup file passed to FSM: {}".format(setup_file))
         self.setup(setup_file)
 
-
     def setup(self, fn):
-        logging.info("Setup called for FSM...")
+        self.logger.info("Setup called for FSM...")
         with open(fn) as f:
             lines = [l.strip() for l in f.readlines()]
             N_States = int(lines[0])
@@ -25,19 +25,38 @@ class FSM:
                 trans,details = cur.split(":")
                 s1,s2 = [int(x) for x in trans.split(">")]
                 chars,action = details.split(";")
-                self.states[s1].transitions[chars] = [s2,action]
+                chars = chars.split(",")
+                if len(chars) == 2:
+                    chars = [int(i) for i in range(int(chars[0]),int(chars[1]))]
+                self.states[s1].transitions[repr(chars)] = [s2,action]
 
     def generate_states(self, n, acc):
-        logging.info("Generating states and setting accept states...")
+        self.logger.info("Generating states and setting accept states...")
         self.states = []
         for i in range(n):
             if i in acc:
                 s = State(True)
-                logging.info("Accept state set: {}".format(s))
+                self.logger.info("Accept state set: {}".format(s))
             else:
                 s = State(False)
             self.states.append(s)
+        self.logger.info("States: {}".format(self.states))
 
+    def evaluate(self, string):
+        cur = self.states[0]
+        self.logger.info("Evaluating string: {}\nStart state: {}".format(string,cur))
+        for i,ch in enumerate(string):
+            transitions = cur.transitions
+            self.logger.info("Character read: {}, transitions available: {}".format(ch, transitions))
+            for lst in transitions.keys():
+                if ch in list(lst):
+                    cur = transitions[lst]
+                    self.logger.info("Transitioned to state: {}".format(cur))
+        transitions = cur.transitions
+        if "$" in transitions:
+            return [True, transitions["$"]]
+        else:
+            return [False, None]
 
 
 

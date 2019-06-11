@@ -42,6 +42,8 @@ if __name__ == '__main__':
         logger.info("Mode selected ({})".format(mode))
         from FSM import FSM
         fsm = FSM("fsm_setup.txt")
+        result = fsm.evaluate("-")
+        logger.info("Result: {}".format(result))
         #from Console import Console
         #console = Console()
         #console.test_run()
