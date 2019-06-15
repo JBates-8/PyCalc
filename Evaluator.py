@@ -7,7 +7,7 @@ Created: 5/15/2019 11:26 PM
 import logging
 import re
 
-from Function import Function
+from parsing.Function import Function
 from Lagrange import Lagrange
 import numbers
 

@@ -5,6 +5,7 @@ Created: 5/15/2019 12:43 AM
 """
 import logging
 from Evaluator import Evaluator
+from parsing import FSM
 
 class Console():
 
@@ -14,6 +15,7 @@ class Console():
         self.symb = prompt
         self.cmds_proc = 0
         self.cur_cmd = None
+        self.fsm = FSM("fsm_setup.txt")
         self.logger.info("Console initialized... prompt set to '{}'".format(self.symb))
 
     def prompt(self):
@@ -21,7 +23,8 @@ class Console():
 
     def process(self):
         self.cur_cmd = self.cur_cmd.strip()
-        self.evaluator.evaluate(self.cur_cmd)
+        result = self.fsm.evaluate(self.cur_cmd)
+        self.logger.info(result)
         self.cmds_proc += 1
         self.logger.debug("input: {}".format(self.cur_cmd))
 

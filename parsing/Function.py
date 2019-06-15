@@ -36,12 +36,12 @@ class Variable:
 
     def __sub__(self, other):
         assert type(other) is Variable, "Class not of type variable {}".format(repr(other))
-        assert other.name == self.name, "Cannot add different variables together into one"
+        assert other.name == self.name, "Cannot subtract different variables together into one"
         return Variable(self.name, in_coef=self.coef - other.coef)
 
     def __mul__(self, other):
         assert type(other) is Variable, "Class not of type variable {}".format(repr(other))
-        assert other.name == self.name, "Cannot add different variables together into one"
+        assert other.name == self.name, "Cannot multiply different variables together into one"
         return Variable(self.name, in_coef=self.coef + other.coef)
 
     def __str__(self):

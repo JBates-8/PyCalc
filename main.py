@@ -3,6 +3,10 @@ File: main.py
 Author: Jackson Bates
 Created: 5/14/2019 3:20 PM 
 """
+
+from parsing import FSM
+
+
 if __name__ == '__main__':
     import sys
     import logging
@@ -40,9 +44,9 @@ if __name__ == '__main__':
     elif mode == 'TEST': #Debug mode in CLI
         output_stream.setLevel(logging.DEBUG)
         logger.info("Mode selected ({})".format(mode))
-        from FSM import FSM
+
         fsm = FSM("fsm_setup.txt")
-        result = fsm.evaluate("-")
+        result = fsm.evaluate("213")
         logger.info("Result: {}".format(result))
         #from Console import Console
         #console = Console()
