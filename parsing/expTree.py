@@ -14,9 +14,11 @@ class Node:
 
     def set_left(self, node):
         self.left = node
+        node.parent = self
 
     def set_right(self, node):
         self.right = node
+        node.parent = self
 
 
 
